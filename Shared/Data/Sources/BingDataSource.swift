@@ -25,8 +25,8 @@ class BingDataSource: DataSource {
     struct RawAreaInfo: Codable {
         var name: String
         var infectionCount: Int
-        var deathCount: Int
-        var recoveredCount: Int
+        var deathCount: Int?
+        var recoveredCount: Int?
 //        var lastUpdated: String?
         
         enum CodingKeys: String, CodingKey {
@@ -41,7 +41,7 @@ class BingDataSource: DataSource {
         var country: CountryInfo {
             let countryData = CountryMapping.countryFromCountryName(name)
             
-            return CountryInfo(name: name, data: countryData, infectionCount: infectionCount, deathCount: deathCount, recoveredCount: recoveredCount, lastUpdated: "", comments: "")
+            return CountryInfo(name: name, data: countryData, infectionCount: infectionCount, deathCount: deathCount ?? 0, recoveredCount: recoveredCount ?? 0, lastUpdated: "", comments: "")
         }
     }
     
